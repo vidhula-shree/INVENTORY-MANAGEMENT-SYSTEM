@@ -1,4 +1,4 @@
-# inStock Inventory Management App
+#  Inventory Stock Management App
 
 ###### <b>A collaborative development by:  [Vasudha](https://github.com/Vasudha0405) / [Vidhula Shree Shankar]() / [Vidya Mathad]() / [Thejaswini M]() / [Yuktha D]() / [Bharath M Gowda]() </b>
 

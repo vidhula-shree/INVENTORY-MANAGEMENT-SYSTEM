@@ -25,12 +25,4 @@ Tools used to complete project: create-react-app, react-router-dom, Node, Expres
 - Open `http://localhost:3000` in your browser.
 
 
-## Screenshots
-<img src = "https://github.com/ffluxpavillion/inStock-mp2/blob/master/client/src/assets/Screenshots/inStock_warehouse-page.png">
-<img src = "https://github.com/ffluxpavillion/inStock-mp2/blob/master/client/src/assets/Screenshots/inStock_inventory-page.png">
-<img src = "https://github.com/ffluxpavillion/inStock-mp2/blob/master/client/src/assets/Screenshots/inStock_add-warehouse.png">
-<img src = "https://github.com/ffluxpavillion/inStock-mp2/blob/master/client/src/assets/Screenshots/inStock_add-inventory.png">
-<img src = "https://github.com/ffluxpavillion/inStock-mp2/blob/master/client/src/assets/Screenshots/inStock_edit-warehouse.png">
-<img src = "https://github.com/ffluxpavillion/inStock-mp2/blob/master/client/src/assets/Screenshots/inStock_edit-inventory.png">
-<img src = "https://github.com/ffluxpavillion/inStock-mp2/blob/master/client/src/assets/Screenshots/inStock_delete-warehouse.png">
-<img src = "https://github.com/ffluxpavillion/inStock-mp2/blob/master/client/src/assets/Screenshots/inStock_delete-inventory.png">
+

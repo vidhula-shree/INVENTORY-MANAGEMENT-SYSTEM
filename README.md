@@ -1,7 +1,7 @@
 # inStock Inventory Management App
 
-###### <b>A collaborative development by:  [Arjun Sahjpaul](https://github.com/ffluxpavillion) / [Saksham Tandom](https://github.com/saksham1236) / [Kate Bark](https://github.com/KateBark) / [Michael Sun Dela Cruz](https://github.com/mikesdc)</b>
-###### BrainStation (Nov 2023)
+###### <b>A collaborative development by:  [Vasudha](https://github.com/Vasudha0405) / [Vidhula Shree Shankar]() / [Vidya Mathad]() / [Thejaswini M]() / [Yuktha D]() / [Bharath M Gowda]() </b>
+
 
 
 ## Project Overview

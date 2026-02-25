@@ -1,6 +1,6 @@
 #  Inventory Stock Management App
 
-###### <b>A collaborative development by:  [Vasudha](https://github.com/Vasudha0405) / [Vidhula Shree Shankar]() / [Vidya Mathad]() / [Thejaswini M]() / [Yuktha D]() / [Bharath M Gowda]() </b>
+###### <b>A collaborative development by:  [Vasudha](https://github.com/Vasudha0405) / [Vidhula Shree Shankar]() / [Vidya Mathad](https://github.com/vidyaMatadh) / [Thejaswini M]() / [Yuktha D]() / [Bharath M Gowda]() </b>
 
 
 

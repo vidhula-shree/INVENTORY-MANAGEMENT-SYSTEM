@@ -28,4 +28,4 @@ Tools used to complete project: create-react-app, react-router-dom, Node, Expres
 
 <img src="DOCUMENTATION/Screenshot 2026-02-19 122846.png" alt="Project Screenshot">
 
-<img src="DOCUMENTATION/Screenshot 2026-02-19 122846.png" alt="Project Screenshot">
+<img src="DOCUMENTATION/Screenshot 2026-02-19 122902.png" alt="Project Screenshot">

@@ -24,5 +24,5 @@ Tools used to complete project: create-react-app, react-router-dom, Node, Expres
 - VSCode/terminal: run `npm start` in the client directory
 - Open `http://localhost:3000` in your browser.
 
-
+<img src="DOCUMENTATION/Screenshot 2026-02-19 122718.png" alt="Project Screenshot">
 

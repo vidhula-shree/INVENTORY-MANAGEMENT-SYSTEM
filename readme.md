@@ -67,7 +67,44 @@ We welcome contributions! Please:
 4. Push to branch (`git push origin feature-name`)
 5. Open a Pull Request
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project README</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .image-container {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
 
+    <h1>Project Documentation</h1>
+    
+    <p>This image is loaded from the <strong>documentation</strong> folder:</p>
+
+    <div class="image-container">
+        <img src="DOCUMENTATION/image.png" alt="Project Screenshot">
+    </div>
+
+</body>
+</html>
 ## 👥 Team
 Developed and maintained by the **Inventory Management System Team**.
 ```
@@ -79,5 +116,4 @@ VIDYA MATHAD
 YUKTHA D
 BHARATH M GOWDA
 ---
-
 

@@ -100,7 +100,7 @@ We welcome contributions! Please:
     <p>This image is loaded from the <strong>documentation</strong> folder:</p>
 
     <div class="image-container">
-        <img src="DOCUMENTATION/image.png" alt="Project Screenshot">
+        <img src="DOCUMENTATION/Screenshot 2026-02-19 122718.png" alt="Project Screenshot">
     </div>
 
 </body>

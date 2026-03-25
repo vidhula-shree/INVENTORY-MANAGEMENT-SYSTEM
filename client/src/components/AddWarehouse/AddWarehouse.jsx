@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -93,13 +92,13 @@ export default function AddWarehouseForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      axios.post('http://localhost:8080/warehouses', formData)
-      .then(response => {
-        console.log(response.data)
-        alert('Warehouse Added Successfully! 🚀');
-        navigate(-1);
-      })
-      .catch(error => console.error('Error:', error));
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+      axios.post(`${API_URL}/warehouses`, formData)
+        .then(response => {
+          alert('Warehouse Added Successfully!');
+          navigate(-1);
+        })
+        .catch(error => console.error('Error:', error));
     }
   };
 

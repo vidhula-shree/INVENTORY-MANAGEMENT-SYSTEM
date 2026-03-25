@@ -3,7 +3,7 @@ import "./DeleteWarehouseModal.scss";
 import closeImg from "../../assets/Icons/close-24px.svg";
 import axios from "axios";
 
-const API_URL = process.env.API_URL || "http://localhost:8080";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
 
 const DeleteWarehouseModal = ({
   selectedWarehouseName,
@@ -11,6 +11,7 @@ const DeleteWarehouseModal = ({
   setShowModal,
   setSelectedWarehouseName,
   setSelectedWarehouseId,
+  onDeleteSuccess,
 }) => {
   // function for button - closing the modal
   const handleClose = () => {
@@ -27,6 +28,9 @@ const DeleteWarehouseModal = ({
         setShowModal(false);
         setSelectedWarehouseName(null);
         setSelectedWarehouseId(null);
+        if (onDeleteSuccess) {
+          onDeleteSuccess();
+        }
       })
       .catch((error) => {
         console.error(error);

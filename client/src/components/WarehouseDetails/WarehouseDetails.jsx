@@ -5,20 +5,34 @@ import './WarehouseDetails.scss';
 import TitleComponent from '../TitleComponent/TitleComponent';
 import WarehouseList from '../WarehouseInventory/WarehouseInventory';
 
-const url = 'http://localhost:8080';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
 function WarehouseDetails(props) {
   const params = useParams();
-
-  const [warehouseData, setWarehouseData] = useState('');
+  const [warehouseData, setWarehouseData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log(params.id);
-    axios.get(`${url}/warehouses/${params.warehouse}`).then((result) => {
-      const warehouseFound = result.data;
-      console.log(warehouseFound);
-      setWarehouseData(warehouseFound);
-    });
-  }, [params.id]);
+    setIsLoading(true);
+    axios
+      .get(`${API_URL}/warehouses/${params.warehouse}`)
+      .then((result) => {
+        setWarehouseData(result.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching warehouse:', error);
+        setIsLoading(false);
+      });
+  }, [params.warehouse]);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (!warehouseData) {
+    return <h1>Warehouse not found</h1>;
+  }
 
   return (
     <div>

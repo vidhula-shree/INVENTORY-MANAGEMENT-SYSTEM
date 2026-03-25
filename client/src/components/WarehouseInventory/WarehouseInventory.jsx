@@ -11,10 +11,10 @@ import chevronImg from "../../assets/Icons/chevron_right-24px.svg";
 
 function WarehouseList() {
 
-    const API_URL = process.env.API_URL || "http://localhost:8080";
+    const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
     const params = useParams();
 
-    const [inventoryList, setInventoryList] = useState([null]);
+    const [inventoryList, setInventoryList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedInventoryName, setSelectedInventoryName] = useState(null);
     const [selectedInventoryId, setSelectedInventoryId] = useState(null);
@@ -29,8 +29,9 @@ function WarehouseList() {
       return () => window.removeEventListener("resize", resize);
     }, [viewWidth]);
   
-    // This useEffect is used to fetch the list of inventories from the API
-    useEffect(() => {
+    // Function to fetch the list of inventories from the API
+    const fetchInventories = () => {
+      setIsLoading(true);
       axios
         .get(`${API_URL}/warehouses/${params.warehouse}/inventories`) //http://localhost:8080/warehouses/1/inventories
         .then((response) => {
@@ -38,9 +39,15 @@ function WarehouseList() {
           setIsLoading(false);
         })
         .catch((error) => {
-          console.log(error);
+          console.error(error);
+          setIsLoading(false);
         });
-    }, [selectedInventoryId]);
+    };
+
+    // This useEffect is used to fetch the list of inventories from the API
+    useEffect(() => {
+      fetchInventories();
+    }, [params.warehouse]);
 
       function WarehouseInventoryList({
         inventoryList,
@@ -198,6 +205,7 @@ function WarehouseList() {
               setShowModal={setShowModal}
               setSelectedInventoryName={setSelectedInventoryName}
               setSelectedInventoryId={setSelectedInventoryId}
+              onDeleteSuccess={fetchInventories}
             />
           ) : !isLoading ? (
             <>
@@ -207,6 +215,7 @@ function WarehouseList() {
                 setShowModal={setShowModal}
                 setSelectedInventoryName={setSelectedInventoryName}
                 setSelectedInventoryId={setSelectedInventoryId}
+                onDeleteSuccess={fetchInventories}
               />{" "}
               <WarehouseInventoryList
                 inventoryList={inventoryList}

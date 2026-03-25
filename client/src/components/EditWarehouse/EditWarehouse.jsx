@@ -96,28 +96,28 @@ export default function EditWarehouseForm() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/warehouses/${warehouse_id}`)
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+    axios.get(`${API_URL}/warehouses/${warehouse_id}`)
       .then(res => {
         setFormData(res.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        // Handle the error appropriately
       });
-}, [warehouse_id]);
+  }, [warehouse_id]);
 
 
   // form submit handler
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
       axios
-      .put(`http://localhost:8080/warehouses/${warehouse_id}`, formData)
-      .then((response) => {
-        console.log(response.data);
-        alert('Warehouse Updated Successfully! 🚀');
-        navigate(-1);
-      })
+        .put(`${API_URL}/warehouses/${warehouse_id}`, formData)
+        .then((response) => {
+          alert('Warehouse Updated Successfully!');
+          navigate(-1);
+        })
         .catch((error) => console.error('Error:', error));
     }
   };

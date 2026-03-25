@@ -6,12 +6,12 @@ require("dotenv").config();
  */
 
 module.exports = {
-  client: "mysql",
+  client: "mysql2",
   connection: {
-    host: process.env.DB_HOST,
-    database: process.env.DB_LOCAL_DBNAME,
-    user: process.env.DB_LOCAL_USER,
-    password: process.env.DB_LOCAL_PASSWORD,
+    host: process.env.DB_HOST || "127.0.0.1",
+    database: process.env.DB_LOCAL_DBNAME || "instockmp2",
+    user: process.env.DB_LOCAL_USER || "root",
+    password: process.env.DB_LOCAL_PASSWORD || "",
     charset: "utf8",
   },
 };

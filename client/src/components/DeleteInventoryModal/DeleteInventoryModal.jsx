@@ -3,7 +3,7 @@ import "./DeleteInventoryModal.scss";
 import closeImg from "../../assets/Icons/close-24px.svg";
 import axios from "axios";
 
-const API_URL = process.env.API_URL || "http://localhost:8080";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
 
 const DeleteInventoryModal = ({
   selectedInventoryName,
@@ -11,6 +11,7 @@ const DeleteInventoryModal = ({
   setShowModal,
   setSelectedInventoryName,
   setSelectedInventoryId,
+  onDeleteSuccess,
 }) => {
   // function for button - closing the modal
   const handleClose = () => {
@@ -27,6 +28,9 @@ const DeleteInventoryModal = ({
         setShowModal(false);
         setSelectedInventoryName(null);
         setSelectedInventoryId(null);
+        if (onDeleteSuccess) {
+          onDeleteSuccess();
+        }
       })
       .catch((error) => {
         console.error(error);

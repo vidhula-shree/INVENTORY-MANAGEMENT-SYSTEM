@@ -4,11 +4,11 @@ import axios from "axios";
 import WarehouseList from "../../components/WarehouseList/WarehouseList";
 import DeleteWarehouseModal from "../../components/DeleteWarehouseModal/DeleteWarehouseModal";
 
-const API_URL = process.env.API_URL || "http://localhost:8080";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
 
 function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [warehousesList, setWarehousesList] = useState([null]);
+  const [warehousesList, setWarehousesList] = useState([]);
   const [selectedWarehouseName, setSelectedWarehouseName] = useState(null);
   const [selectedWarehouseId, setSelectedWarehouseId] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -22,8 +22,9 @@ function Home() {
     return () => window.removeEventListener("resize", resize);
   }, [viewWidth]);
 
-  // This useEffect is used to fetch the list of warehouses from the API
-  useEffect(() => {
+  // Function to fetch the list of warehouses from the API
+  const fetchWarehouses = () => {
+    setIsLoading(true);
     axios
       .get(API_URL + "/warehouses")
       .then((response) => {
@@ -32,8 +33,14 @@ function Home() {
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
       });
-  }, [selectedWarehouseId]);
+  };
+
+  // This useEffect is used to fetch the list of warehouses from the API
+  useEffect(() => {
+    fetchWarehouses();
+  }, []);
 
   return (
     <>
@@ -56,6 +63,7 @@ function Home() {
           setShowModal={setShowModal}
           setSelectedWarehouseName={setSelectedWarehouseName}
           setSelectedWarehouseId={setSelectedWarehouseId}
+          onDeleteSuccess={fetchWarehouses}
         />
       ) : !isLoading ? (
         <>
@@ -65,6 +73,7 @@ function Home() {
             setShowModal={setShowModal}
             setSelectedWarehouseName={setSelectedWarehouseName}
             setSelectedWarehouseId={setSelectedWarehouseId}
+            onDeleteSuccess={fetchWarehouses}
           />
           <WarehouseList
             warehousesList={warehousesList}

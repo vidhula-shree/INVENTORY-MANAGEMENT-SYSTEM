@@ -59,37 +59,75 @@ function AddInventory(props) {
 	};
 
 	const postData = async (postFormData) => {
+		const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
 		axios
-			.post(`http://localhost:8080/inventories/`, postFormData)
+			.post(`${API_URL}/inventories/`, postFormData)
 			.then((res) => {
-				alert(`Item has been added successfully ${res.status}`);
+				alert(`Item has been added successfully!`);
+				navigate('/inventory');
 			})
 			.catch((err) => {
+				const errorMessage = err.response?.data || err.message || 'Unknown error';
 				alert(
-					`Axios error adding item details,  http://localhost:8080/inventories/: ${err}`
+					`Error adding item: ${errorMessage}`
 				);
+				console.error('Error details:', err);
 			});
 	};
 
-	const formHandler = (event) => {
+	const formHandler = async (event) => {
 		event.preventDefault();
+		
+		// Update warehouse_id before validation
 		setWarehouseId(formData.current);
-		console.log(formData.current);
+		
+		// Wait a moment for state to update, then get the updated formData
+		const updatedFormData = { ...formData.current };
+		const warehouses = {
+			Manhattan: 1,
+			Washington: 2,
+			Jersey: 3,
+			SF: 4,
+			"Santa Monica": 5,
+			Seattle: 6,
+			Miami: 7,
+			Boston: 8,
+		};
+		
+		if (updatedFormData.warehouse_name && warehouses[updatedFormData.warehouse_name]) {
+			updatedFormData.warehouse_id = warehouses[updatedFormData.warehouse_name];
+		}
+		
+		console.log(updatedFormData);
+		
 		//Form validation logic
 		if (
-			formData.warehouse_id |
-			formData.item_name |
-			formData.category |
-			(formData.category === "Please select a category") |
-			formData.quantity |
-			formData.warehouse_name |
-			(formData.warehouse_name === "Please select a Warehouse")
+			!updatedFormData.warehouse_id ||
+			!updatedFormData.item_name ||
+			!updatedFormData.category ||
+			updatedFormData.category === "Please select a category" ||
+			!updatedFormData.description ||
+			!updatedFormData.status ||
+			updatedFormData.warehouse_name === "Please select a Warehouse"
 		) {
-			alert("Invalid data");
+			alert("Please fill in all required fields");
 			return;
 		}
+		
+		// Convert quantity to number and ensure it's valid
+		const quantity = updatedFormData.status === "Out of Stock" ? 0 : parseInt(updatedFormData.quantity) || 0;
+		
+		// Prepare data for API
+		const postDataPayload = {
+			warehouse_id: updatedFormData.warehouse_id,
+			item_name: updatedFormData.item_name,
+			description: updatedFormData.description,
+			category: updatedFormData.category,
+			status: updatedFormData.status,
+			quantity: quantity
+		};
 
-		postData(formData.current);
+		postData(postDataPayload);
 	};
 
 	function showQuantityFunc(show) {

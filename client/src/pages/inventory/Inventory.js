@@ -4,10 +4,10 @@ import axios from "axios";
 import InventoryList from "../../components/InventoryList/InventoryList";
 import DeleteInventoryModal from "../../components/DeleteInventoryModal/DeleteInventoryModal";
 
-const API_URL = process.env.API_URL || "http://localhost:8080";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
 
 function Inventory() {
-  const [inventoryList, setInventoryList] = useState([null]);
+  const [inventoryList, setInventoryList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedInventoryName, setSelectedInventoryName] = useState(null);
   const [selectedInventoryId, setSelectedInventoryId] = useState(null);
@@ -22,8 +22,9 @@ function Inventory() {
     return () => window.removeEventListener("resize", resize);
   }, [viewWidth]);
 
-  // This useEffect is used to fetch the list of inventories from the API
-  useEffect(() => {
+  // Function to fetch the list of inventories from the API
+  const fetchInventories = () => {
+    setIsLoading(true);
     axios
       .get(API_URL + "/inventories")
       .then((response) => {
@@ -31,9 +32,15 @@ function Inventory() {
         setIsLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
+        setIsLoading(false);
       });
-  }, [selectedInventoryId]);
+  };
+
+  // This useEffect is used to fetch the list of inventories from the API
+  useEffect(() => {
+    fetchInventories();
+  }, []);
 
   return (
     <>
@@ -56,6 +63,7 @@ function Inventory() {
           setShowModal={setShowModal}
           setSelectedInventoryName={setSelectedInventoryName}
           setSelectedInventoryId={setSelectedInventoryId}
+          onDeleteSuccess={fetchInventories}
         />
       ) : !isLoading ? (
         <>
@@ -65,6 +73,7 @@ function Inventory() {
             setShowModal={setShowModal}
             setSelectedInventoryName={setSelectedInventoryName}
             setSelectedInventoryId={setSelectedInventoryId}
+            onDeleteSuccess={fetchInventories}
           />{" "}
           <InventoryList
             inventoryList={inventoryList}

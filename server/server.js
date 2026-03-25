@@ -7,7 +7,7 @@ const cors = require("cors");
 require("dotenv").config();
 let { PORT, BACKEND_URL, CORS_ORIGIN } = process.env;
 
-PORT = process.env.PORT || 8081;
+PORT = process.env.PORT || 8080;
 
 
 // CORS

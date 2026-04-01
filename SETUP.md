@@ -128,3 +128,29 @@ The only things that change machine to machine are:
 
 MySQL password → update .env
 If someone uses a different MySQL username → update DB_LOCAL_USER too)))))
+
+[[[[[Open MySQL Workbench:
+
+Press Windows key → type MySQL Workbench → Enter
+
+Change password:
+
+Click on the local connection → enter current password
+In the query window, run:
+
+sqlALTER USER 'root'@'localhost' IDENTIFIED BY 'root123';
+FLUSH PRIVILEGES;
+```
+- Click the ⚡ button to run
+
+**Then update `.env`:**
+```
+DB_LOCAL_PASSWORD=root123
+Then in server terminal:
+powershellnpm install
+npx knex migrate:latest
+npx knex seed:run
+npm start
+Then in client terminal:
+powershellnpm install react-scripts@5.0.1 --save
+npm start]]]]]

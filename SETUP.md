@@ -98,3 +98,33 @@ mysql -u root -p -e "SHOW DATABASES;"
 ### Environment Variables
 - Frontend variables MUST start with `REACT_APP_`
 - Restart servers after changing `.env` files
+
+- ((((Great that it's working! 🎉 Here's what you'd need to do on any new computer:
+Install these first:
+
+Node.js (from nodejs.org)
+MySQL 8 (from mysql.com)
+
+Then these steps every time:
+1. MySQL setup
+
+Install MySQL and set a root password
+Create the database: CREATE DATABASE instockmp2;
+Run the auth fix: ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'yourpassword';
+
+2. Update .env in the server folder with the new machine's MySQL password:
+DB_LOCAL_PASSWORD=yourpassword
+DB_LOCAL_USER=root
+3. In the server folder:
+powershellnpm install
+npx knex migrate:latest
+npx knex seed:run
+npm start
+4. In the client folder:
+powershellnpm install react-scripts@5.0.1 --save
+npm start
+
+The only things that change machine to machine are:
+
+MySQL password → update .env
+If someone uses a different MySQL username → update DB_LOCAL_USER too)))))
